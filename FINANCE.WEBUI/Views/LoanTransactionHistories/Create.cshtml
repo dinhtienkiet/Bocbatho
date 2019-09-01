@@ -1,0 +1,54 @@
+﻿@model FINANCE.CORE.Models.LoanTransactionHistory
+
+@{
+    ViewData["Title"] = "Tạo mới";
+}
+
+<h1>Tạo mới</h1>
+
+<h4>Thu chi vay lãi</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserID" class="control-label">Người thực hiện</label>
+                <select asp-for="UserID" class="form-control" asp-items="ViewBag.UserID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanContractID" class="control-label">Mã hợp đồng</label>
+                <select asp-for="LoanContractID" class="form-control" asp-items="ViewBag.LoanContractID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Số tiền</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractSignDate" class="control-label">Ngày lập phiếu</label>
+                <input asp-for="ContractSignDate" class="form-control" />
+                <span asp-validation-for="ContractSignDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label">Loại phiếu</label>
+                <select asp-for="Type" class="form-control">
+                    <option value="0">Thu</option>
+                    <option value="1">Chi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Ghi chú</label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay lại</a>
+</div>

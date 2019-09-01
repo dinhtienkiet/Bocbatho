@@ -1,0 +1,58 @@
+﻿@model FINANCE.CORE.Models.Borrower
+
+@{
+    ViewData["Title"] = "Create";
+    
+}
+
+<h2>TẠO MỚI NGƯỜI VAY HỌ</h2>
+
+<h4></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">HỌ TÊN</label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoB" class="control-label">NGÀY SINH</label>
+                <input asp-for="DoB" class="form-control" required type="date" />
+                <span asp-validation-for="DoB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">SỐ ĐIỆN THOẠI</label>
+                <input type="number" asp-for="PhoneNumber" class="form-control" required />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCardNumber" class="control-label">SỐ CHỨNG MINH THƯ</label>
+                <input type="number" asp-for="IdCardNumber" class="form-control" required />
+                <span asp-validation-for="IdCardNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">ĐỊA CHỈ</label>
+                <input asp-for="Address" class="form-control" required />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">TRẠNG THÁI</label>
+                <select asp-for="Status" class="form-control">
+                    <option value="0">Nợ xấu</option>
+                    <option value="1">Đúng hạn</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="TẠO MỚI" class="btn btn-default" />
+                <a class="btn btn-success" asp-action="Index">HỦY</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

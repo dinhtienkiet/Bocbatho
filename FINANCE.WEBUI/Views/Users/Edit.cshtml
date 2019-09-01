@@ -1,0 +1,108 @@
+﻿@model FINANCE.CORE.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="UserID" />
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <input class="btn btn-primary" id="yes" value="Change PassWord">
+            <input style="display:none" id="no" class="btn btn-primary" value="Not Change">
+            <div style="display:none" class="form-group pass">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" id="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div style="display:none" class="form-group pass">
+                <label class="control-label"></label>
+                <input asp-for="Password" id="confirm_password" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label class="btn btn-primary control-label col-md-12">
+                    <i class="glyphicon glyphicon-picture"></i> Upload Image
+                    <input asp-for="Avatar" type="file" id="fileUpload" name="fileUpload" class="form-control" style="display: none;" />
+                </label>&nbsp;
+            </div>
+            <div class="form-group" id="imgPreview" style="display:block">
+                <img src="@Url.Content(Model.Avatar)" id="targetImg" class="rounded mx-auto d-block" style="width: 400px; height: 400px" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+     var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+    if(password.value != confirm_password.value) {
+     confirm_password.setCustomValidity("Passwords Don't Match");
+    }
+    else {
+     confirm_password.setCustomValidity('');
+    }
+    }
+    password.onchange = validatePassword; // khi thay doi
+    confirm_password.onkeyup = validatePassword;// khi nha 1 phim
+    $(document).ready(function () {
+        $("input[value='Change PassWord']").click(function () {
+            $(".pass").show();
+            $("#yes").hide();
+            $("#no").show();
+            document.getElementById("password").required = true;
+        })
+        $("input[value='Not Change']").click(function () {
+            $(".pass").hide();
+            $("#no").hide();
+            $("#yes").show();
+            document.getElementById("password").required = false;
+        })
+    })
+    $(document).ready(function () {
+        $("#fileUpload").change(function () {
+            var File = this.files;
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+            else {
+                $("#targetImg").attr('src','@Url.Content(Model.Avatar)');
+            }
+        })
+    })
+
+    var ReadImage = function (file) {
+        var reader = new FileReader;
+        var image = new Image;
+        reader.readAsDataURL(file);
+        reader.onload = function (_file) {
+            image.src = _file.target.result;
+            image.onload = function () {
+                $("#targetImg").attr('src', _file.target.result);
+                $("#imgPreview").show();
+            }
+        }
+    }
+
+   
+</script>

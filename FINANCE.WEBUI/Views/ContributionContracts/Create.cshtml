@@ -1,0 +1,74 @@
+﻿@model FINANCE.CORE.Models.ContributionContract
+
+@{
+    ViewData["Title"] = "Create";
+}
+<br/>
+<h1 align ="center">TẠO HỢP ĐỒNG GÓP VỐN</h1>
+
+<h3>Thông tin hợp đồng</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ContributorID" class="control-label">Tên người góp vốn</label>
+                <select asp-for="ContributorID" class="form-control" asp-items="ViewBag.ContributorID"></select>
+                <span asp-validation-for="ContributorID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Số tiền</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterestRate" class="control-label">Lãi suất</label>
+                <input asp-for="InterestRate" class="form-control" />
+                <span asp-validation-for="InterestRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractSignDate" class="control-label">Ngày ký hợp đồng</label>
+                <input asp-for="ContractSignDate" class="form-control" />
+                <span asp-validation-for="ContractSignDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpireDate" class="control-label">Ngày hết hạn</label>
+                <input asp-for="ExpireDate" class="form-control" />
+                <span asp-validation-for="ExpireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterestCycle" class="control-label">Chu kỳ lãi</label>
+                <input asp-for="InterestCycle" class="form-control" />
+                <span asp-validation-for="InterestCycle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThisTermInterest" class="control-label">Tiền lãi kỳ này</label>
+                <input asp-for="ThisTermInterest" class="form-control" />
+                <span asp-validation-for="ThisTermInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotReceivedInterest" class="control-label">Tiền lãi chưa nhận</label>
+                <input asp-for="NotReceivedInterest" class="form-control" />
+                <span asp-validation-for="NotReceivedInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Trạng thái HĐ</label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Ghi chú</label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Trở về</a>
+</div>

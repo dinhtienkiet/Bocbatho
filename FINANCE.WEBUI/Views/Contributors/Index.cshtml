@@ -1,0 +1,84 @@
+﻿@model IEnumerable<FINANCE.CORE.Models.Contributor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align:center" >Quản lý người góp vốn</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create","Contributors")">Create New</a>
+</p>
+@if (ViewData["infor1"] != null)
+{
+    <h1>@ViewData["infor1"]</h1>
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    @using (Html.BeginForm("index", "Contributors", FormMethod.Get))
+                    {<p>
+                            @Html.TextBox("text", (string)ViewBag.searchValue)<input type="submit" value="Tìm kiếm" />
+                        </p>
+                    }
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tên người góp vốn
+                                </th>
+                                <th>
+                                    Ngày sinh
+                                </th>
+                                <th>
+                                    Số điện thoại
+                                </th>
+                                <th>
+                                    Số CMND
+                                </th>
+                                <th>
+                                    Số tài khoản
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @item.DoB.ToString("MM/dd/yyyy")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdCardNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BankNumber)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.ContributorID">Edit</a> |
+                                        <a asp-action="Details" class="btn btn-success" asp-route-id="@item.ContributorID">Details</a> |
+                                        <a asp-action="Delete" class="btn btn-danger" onclick="btDelete()" asp-route-id="@item.ContributorID">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function btDelete() {
+        return (confirm('Are you sure you want to delete ?'));
+    }
+</script>

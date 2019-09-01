@@ -1,0 +1,84 @@
+﻿@model FINANCE.CORE.Models.ContributionContract
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 align="center" style="font-weight:bold;color:red">CHỈNH SỬA</h1>
+
+<h4>Thông tin hợp đồng</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ContributorID" class="control-label">Mã người góp vốn</label>
+                <input asp-for="ContributorID" class="form-control" />
+                <span asp-validation-for="ContributorID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contributors.Name" class="control-label">Tên người góp vốn</label>
+                <input asp-for="Contributors.Name" class="form-control" />
+                <span asp-validation-for="Contributors.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractID" class="control-label">Mã hợp đồng</label>
+                <input asp-for="ContractID" class="form-control" />
+                <span asp-validation-for="ContractID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Số tiền</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterestRate" class="control-label">Lãi suất</label>
+                <input asp-for="InterestRate" class="form-control" />
+                <span asp-validation-for="InterestRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractSignDate" class="control-label">Ngày ký hợp đồng</label>
+                <input asp-for="ContractSignDate" class="form-control" />
+                <span asp-validation-for="ContractSignDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpireDate" class="control-label">Ngày hết hạn</label>
+                <input asp-for="ExpireDate" class="form-control" />
+                <span asp-validation-for="ExpireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterestCycle" class="control-label">Chu kỳ lãi</label>
+                <input asp-for="InterestCycle" class="form-control" />
+                <span asp-validation-for="InterestCycle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThisTermInterest" class="control-label">Tiền lãi kỳ này</label>
+                <input asp-for="ThisTermInterest" class="form-control" />
+                <span asp-validation-for="ThisTermInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotReceivedInterest" class="control-label">Tiền lãi chưa nhận</label>
+                <input asp-for="NotReceivedInterest" class="form-control" />
+                <span asp-validation-for="NotReceivedInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Trạng thái HĐ</label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Ghi chú</label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

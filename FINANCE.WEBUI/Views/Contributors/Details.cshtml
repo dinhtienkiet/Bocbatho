@@ -1,0 +1,117 @@
+﻿@model IEnumerable<FINANCE.CORE.Models.ContributionContract>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="text-align:center">Chi tiết</h1>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name Contributor
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Amount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.InterestRate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ContractSignDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExpireDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.InterestCycle)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ThisTermInterest)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NotReceivedInterest)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Note)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var check = @item.Status;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Contributors.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.InterestRate)
+                                    </td>
+                                    <td>
+                                        @item.ContractSignDate.ToString("MM/dd/yyyy")
+                                    </td>
+                                    <td>
+                                        @item.ExpireDate.ToString("MM/dd/yyyy")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.InterestCycle)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ThisTermInterest)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NotReceivedInterest)
+                                    </td>
+                                    <td>
+                                        @if (check == 0)
+                                        {
+                                            <span class="label label-success">Borrowing</span>
+                                        }
+                                        else if (check == 1)
+                                        {
+                                            <span class="label label-warning">Debt</span>
+                                        }
+                                        else if (check == 2)
+                                        {
+                                            <span class="label label-warning">Ovedue</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-danger">Closed</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.Note.Length > 10)
+                                        {
+                                            <p>@item.Note.Substring(0, 10)<span>........</span></p>;
+                                        }
+                                        else
+                                        {
+                                            <span>@item.Note</span>
+                                        }
+                                    </td>
+
+
+                                </tr>
+                            }
+                    </table>
+                    <a asp-action="Index" class="btn btn-success">Back to...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

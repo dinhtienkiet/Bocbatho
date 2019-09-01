@@ -1,0 +1,133 @@
+﻿@model IEnumerable<FINANCE.CORE.Models.LoanContract>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if(ViewData["CreateSuccuss"] != null)
+{
+    <script>
+        alert("Tao moi thanh cong")
+    </script>
+}
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã Hợp Đồng
+            </th>
+            <th>
+                Gói vay
+            </th>
+            <th>
+                Phần Trăm Lãi
+            </th>
+            <th>
+                Tiền Vay
+            </th>
+            <th>
+                Ngày Tạo HĐ
+            </th>
+            <th>
+                Ngày Hết Hạn
+            </th>
+            <th>
+                Tiền Lãi Kỳ
+            </th>
+            <th>
+                Tiền Lãi Chưa Đóng
+            </th>
+            <th>
+                Trạng Thái
+            </th>
+            <th>
+                Ghi Chú
+            </th>
+            <th>
+                Người Vay
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    var check = @item.Status;
+    var loanPackage = item.LoanPackage;
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ContractID)</td>
+            <td >
+                @if (loanPackage == 0)
+                {
+                    <span class="label label-success" >Dài hạn</span>
+                }
+                else if (loanPackage == 1)
+                {
+                    <span class="label label-warning">Ngắn hạn</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                 @item.ContractSignDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.ExpireDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestPayDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestInDebt)
+            </td>
+            <td>
+                @if (check == 0)
+                {
+                <span class="label label-success">ENOUGH</span>
+                }
+                else if (check == 1)
+                {
+                <span class="label label-warning">OWED</span>
+                }
+                else if (check == 2)
+                {
+                <span class="label label-warning">OVERDUE</span>
+                }
+                else
+                {
+                    <span class="label label-danger">Closed</span>
+                }
+            </td>
+            <td >
+                @if(item.Note.Length > 10)
+                {
+                    <p>@item.Note.Substring(0, 10)<span>........</span></p>;
+                }else
+                {
+                    <span>@item.Note</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Borrower.Name)
+            </td>
+            <td >
+                <a asp-action="Edit" asp-route-id="@item.ContractID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContractID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContractID" onclick="return btDelete()">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script>
+    function btDelete() {
+        return (confirm('Are you sure you want to delete the LoanContract'));
+    }
+</script>

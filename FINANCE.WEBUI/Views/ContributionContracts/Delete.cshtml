@@ -1,0 +1,87 @@
+﻿@model FINANCE.CORE.Models.ContributionContract
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<br />
+<h1 align="center" style="font-weight:bold;color:red">XÓA HỢP ĐỒNG</h1>
+<h3>Bạn chắc chắn muốn xóa hợp đồng này?</h3>
+<div>
+    <h4>Thông tin hợp đồng</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên người góp vốn
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contributors.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Mã hợp đồng
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContractID)
+        </dd>
+        <dt class="col-sm-2">
+            Số tiền
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt class="col-sm-2">
+            Lãi suất
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.InterestRate)
+        </dd>
+        <dt class="col-sm-2">
+            Ngày ký hợp đồng
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContractSignDate)
+        </dd>
+        <dt class="col-sm-2">
+            Ngày hết hạn
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExpireDate)
+        </dd>
+        <dt class="col-sm-2">
+            Chu kỳ lãi
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.InterestCycle)
+        </dd>
+        <dt class="col-sm-2">
+            Tiền lãi kỳ này
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ThisTermInterest)
+        </dd>
+        <dt class="col-sm-2">
+            Tiền lãi chưa nhận
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NotReceivedInterest)
+        </dd>
+        <dt class="col-sm-2">
+            Trạng thái HĐ
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-2">
+            Ghi chú
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ContractID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<FINANCE.CORE.Models.Borrower>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<h1 style=" text-align:center">QUẢN LÝ NGƯỜI VAY HỌ</h1>
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("Create","Borrowers")">TẠO MỚI NGƯỜI VAY</a>
+</p>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    HỌ TÊN
+                                </th>
+                                <th>
+                                    NGÀY SINH
+                                </th>
+                                <th>
+                                    SỐ ĐIỆN THOẠI
+                                </th>
+                                <th>
+                                    SỐ CHỨNG MINH THƯ
+                                </th>
+                                <th>
+                                    ĐỊA CHỈ
+                                </th>
+                                <th>
+                                    TRẠNG THÁI
+                                </th>
+
+                                <th>
+                                    HÀNH ĐỘNG
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var status = item.Status;
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DoB)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IdCardNumber)
+                                </td>
+                                <td>
+                                    @if (item.Address.Length > 15)
+                                    {
+                                        <p>@item.Address.Substring(0, 15)<span>.....</span></p>;
+                                    }
+                                    else
+                                    {
+                                        <span>@item.Address</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (status == 0)
+                                    {
+                                        <span class="label label-warning">Nợ xấu</span>
+                                    }
+                                    else if (status == 1)
+                                    {
+                                        <span class="label label-success">Đúng hạn</span>
+                                    }
+                                </td>
+                                
+                                <td>
+                                        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.BorrowerID">XEM</a>
+                                        <a class="btn btn-default" asp-action="Edit" asp-route-id="@item.BorrowerID">SỬA</a>
+                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.BorrowerID" onclick="return btDelete()">XÓA</a>
+                                </td>
+                            </tr>
+                            }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+     function btDelete() {
+        return (confirm('BẠN CÓ CHẮC CHẮN MUỐN XÓA KHÔNG?'));
+    }
+</script>

@@ -1,0 +1,203 @@
+﻿@model IEnumerable<FINANCE.CORE.Models.InstallmentLoanContract>
+
+@{
+    ViewData["Title"] = "Index";
+    Decimal tong = 0;
+}
+
+<h1>Hợp Đồng Vay Bát Họ</h1>
+@if (ViewData["CreateError"] != null)
+{
+    <script type="text/javascript">
+        alert("Add Error");
+    </script>
+}
+<p>
+    <div class="card-body">
+        <h4 class="card-title"></h4>
+        <!-- sample modal content -->
+        <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm Hợp Đồng Vay Bát Họ</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label name="BorrowerID" class="control-label col-form-label">Người vay</label>
+                                        <select name="BorrowerID" class="form-control" asp-items="ViewBag.BorrowerID"></select>
+                                    </div>
+                                </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label class="control-label col-form-label">Số tiền</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="number" step="0.01" class="form-control" name="Amount" placeholder="0.00" required aria-label="Amount" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="donate1" class="control-label col-form-label">Lợi nhuận</label>
+                                            <input type="number"step="0.01" name="InterestRate" class="form-control" id="donate1" required placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label name="ContractSignDate" class="control-label col-form-label">Ngày ký hợp đồng</label>
+                                            <input name="ContractSignDate" type="date" step="0.01" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label name="Term" class="control-label col-form-label">Thời gian vay</label>
+                                            <input name="Term" type="date" class="form-control" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label name="DailyInterest" class="control-label col-form-label">Lãi/Ngày</label>
+                                            <input name="DailyInterest" type="number"step="0.01" class="form-control" placeholder="0.00" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label name="InterestCycle" class="control-label col-form-label">Chu kỳ đóng lãi</label>
+                                            <input name="InterestCycle"type="number"step="0.01" class="form-control" placeholder="0" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label name="Paid" class="control-label col-form-label">Lãi đã đóng</label>
+                                            <input name="Paid"type="number" step="0.01"class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label name="Unpaid" class="control-label col-form-label">Lãi chưa đóng</label>
+                                            <input name="Unpaid" type="number" step="0.01"class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label name="Status" class="control-label col-form-label">Trạng thái</label>
+                                            <select name="Status" class="form-control">
+                                                <option value="0">BORROWING</option>
+                                                <option value="1">DEBT</option>
+                                                <option value="2">OVERDUE</option>
+                                                <option value="3">CLOSED</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"style="padding-left: 350px">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal -->
+        <a alt="default" data-toggle="modal" data-target="#responsive-modal" class="model_img img-fluid">Tạo mới</a>
+       
+    </div>
+</p>
+<div class="table-responsive">
+    <table id="zero_config" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Mã Hợp Đồng</th>
+                <th>Số Tiền</th>
+                <th>Lợi Nhuận</th>
+                <th>Ngày ký HĐ</th>
+                <th>Thời Gian vay Họ</th>
+                <th>Lãi/Ngày</th>
+                <th>Chu kỳ Đóng lãi</th>
+                <th>Lãi Đã Đóng</th>
+                <th>Lãi Chưa Đóng</th>
+                <th>Trạng Thái</th>
+                <th>Người Vay</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var check = @item.Status;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterestRate)
+                </td>
+                <td>
+                    @item.ContractSignDate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Term.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DailyInterest)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterestCycle)
+                </td>
+                    
+                <td>
+                    @item.Paid
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unpaid)
+                </td>
+                <td>
+                    @if (check == 0)
+                    {
+                        <span class="label label-success">Borrowing</span>
+                    }
+                    else if (check == 1)
+                    {
+                        <span class="label label-warning">Debt</span>
+                    }
+                    else if (check == 2)
+                    {
+                        <span class="label label-warning">Ovedue</span>
+                    }
+                    else
+                    {
+                        <span class="label label-danger">Closed</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Borrower.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ContractID">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.ContractID">Chi Tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ContractID" onclick="return btDelete()">Xóa</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    function btDelete() {
+        return (confirm('Are you sure you want to delete the InstallmentLoanContract'));
+    }
+</script>
+

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<FINANCE.CORE.Models.ContributionContract>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<h1 align="center" style="font-weight:bold;color:red">DANH SÁCH HỢP ĐỒNG GÓP VỐN</h1>
+
+<p>
+    <a asp-action="Create">Tạo mới hợp đồng góp vốn</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã người góp vốn
+            </th>
+            <th>
+                Tên người góp vốn
+            </th>
+            <th>
+                Mã hợp đồng
+            </th>
+            <th>
+                Số tiền
+            </th>
+            <th>
+                Lãi suất
+            </th>
+            <th>
+                Ngày ký hợp đồng
+            </th>
+            <th>
+                Ngày hết hạn
+            </th>
+            <th>
+                Chu kỳ lãi
+            </th>
+            <th>
+                Tiền lãi kỳ này
+            </th>
+            <th>
+                Tiền lãi chưa nhận
+            </th>
+            <th>
+                Trạng thái HĐ
+            </th>
+            <th>
+                Ghi chú
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContributorID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contributors.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractSignDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestCycle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThisTermInterest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotReceivedInterest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContractID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContractID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContractID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

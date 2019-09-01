@@ -1,0 +1,85 @@
+﻿@model FINANCE.CORE.Models.InstallmentLoanContract
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@if (ViewData["EditError"] != null)
+{
+    <script>
+        alert("Error");
+    </script>
+}
+<h3 class="m-b-0 text-white">Chi tiết hợp đồng vay bát họ</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BorrowerID" class="control-label">Người vay</label>
+                <select asp-for="BorrowerID" class="form-control" asp-items="ViewBag.BorrowerID"></select>
+                <span asp-validation-for="BorrowerID" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="ContractID" />
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Số tiền</label>
+                <input asp-for="Amount" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterestRate" class="control-label">Lợi nhuận</label>
+                <input asp-for="InterestRate" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="InterestRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractSignDate" class="control-label">Ngày ký hợp đồng</label>
+                <input asp-for="ContractSignDate" type="date" class="form-control" />
+                <span asp-validation-for="ContractSignDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Term" class="control-label">Thời gian vay họ</label>
+                <input asp-for="Term" class="form-control" type="date" />
+                <span asp-validation-for="Term" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DailyInterest" class="control-label">Lãi/Ngày</label>
+                <input asp-for="DailyInterest" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="DailyInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterestCycle" class="control-label">Chu kỳ đóng lãi</label>
+                <input asp-for="InterestCycle" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="InterestCycle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Paid" class="control-label">Lãi đã đóng</label>
+                <input asp-for="Paid" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Paid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Unpaid" class="control-label">Lãi chưa đóng</label>
+                <input asp-for="Unpaid" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Unpaid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Trạng thái</label>
+                <select asp-for="Status" class="form-control">
+                    <option value="0">BORROWING</option>
+                    <option value="1">DEBT</option>
+                    <option value="2">OVERDUE</option>
+                    <option value="3">CLOSED</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

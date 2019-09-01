@@ -1,0 +1,71 @@
+﻿@model FINANCE.CORE.Models.InstallmentLoanTransactionHistory
+
+@{
+    ViewData["Title"] = "Chi tiết";
+}
+
+    <h1>Chi tiết</h1>
+
+    <div>
+        <h4>Thu chi vay họ</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Số phiếu
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ContractID)
+            </dd>
+            <dt class="col-sm-2">
+                Người thực hiện
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.User.Username)
+            </dd>
+            <dt class="col-sm-2">
+                Mã hợp đồng
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.InstallmentLoanContractID)
+            </dd>
+            <dt class="col-sm-2">
+                Loại phiếu
+            </dt>
+            <dd class="col-sm-10">
+                @if (Model.Type == 0)
+                {
+                    <span class="label label-success">Thu</span>
+                }
+                else if (Model.Type == 1)
+                {
+                    <span class="label label-danger">Chi</span>
+                }
+                else
+                {
+                    <span class="label label-warning">NULL</span>
+                }
+            </dd>
+            <dt class="col-sm-2">
+                Số tiền
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
+            <dt class="col-sm-2">
+                Ngày lập phiếu
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ContractSignDate)
+            </dd>
+            <dt class="col-sm-2">
+                Ghi chú
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+        </dl>
+    </div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ContractID">Chỉnh sửa</a> |
+    <a asp-action="Index">Quay lại</a>
+</div>

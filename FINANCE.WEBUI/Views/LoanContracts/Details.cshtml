@@ -1,0 +1,236 @@
+﻿@model FINANCE.CORE.Models.LoanContract
+
+@{
+    ViewData["Title"] = "Details";
+    var status = Model.Borrower.Status;
+    var loanPackage = Model.LoanPackage;
+}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h4 class="m-b-0 text-white">Chi tiết hợp đồng vay bát họ</h4>
+                </div>
+                <form class="form-horizontal">
+                    <div class="form-body">
+                        <div class="card-body">
+                            <h4 class="card-title">Thông tin người vay</h4>
+                        </div>
+                        <hr class="m-t-0 m-b-40">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Tên:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Html.DisplayFor(model => model.Borrower.Name) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Số tài khoản</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Html.DisplayFor(model => model.Borrower.IdCardNumber) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Ngày sinh:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">  @Html.DisplayFor(model => model.Borrower.DoB) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Địa chỉ:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Html.DisplayFor(model => model.Borrower.Address) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Số điện thoại:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">  @Html.DisplayFor(model => model.Borrower.PhoneNumber) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Trạng thái:</label>
+                                        <div class="col-md-9">
+                                            @if (status.Equals("0"))
+                                            {
+                                                <p class="form-control-static">Đúng hạn</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="form-control-static">Nợ xấu</p>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <h4 class="card-title">Hợp đồng vay Lãi</h4>
+                        </div>
+                        <hr class="m-t-0 m-b-40">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Tiền vay:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">  @Html.DisplayFor(model => model.Amount) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Gói vay :</label>
+                                        <div class="col-md-9">
+                                            @if (loanPackage == 0)
+                                            {
+                                                <span>Dài hạn</span>
+                                            }
+                                            else if (loanPackage == 1)
+                                            {
+                                                <span>Ngắn hạn</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Phần trăm lãi:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">  @Html.DisplayFor(model => model.InterestRate) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Ngày ký hợp đồng:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">  @Html.DisplayFor(model => model.ContractSignDate) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Tiền lãi kỳ:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Html.DisplayFor(model => model.InterestPayDate)  </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Ngày hết hạn:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static"> @Html.DisplayFor(model => model.ExpireDate) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Lãi chưa đóng:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">  @Html.DisplayFor(model => model.InterestInDebt) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Trạng thái:</label>
+                                        <div class="col-md-9">
+                                            @{
+                                                var check = Model.Status;
+                                                @if (check == 0)
+                                                {
+                                                <p class="form-control-static"> ENOUGH </p>
+                                                }
+                                                else if (check == 1)
+                                                {
+                                                <p class="form-control-static"> OWED </p>
+                                                }
+                                                else if (check == 2)
+                                                {
+                                                <p class="form-control-static"> OVERDUE </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="form-control-static"> CLOSED </p>
+                                                }
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/row-->
+                            <div class="row">
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-right col-md-3">Ghi chú:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">  @Html.DisplayFor(model => model.Note) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="form-actions">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit" class="btn btn-danger" asp-action="Edit" asp-route-id="@Model.ContractID"> <i class="fa fa-pencil"></i> Edit</button>
+                                                    <button type="submit" class="btn btn-dark" asp-action="Index">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
